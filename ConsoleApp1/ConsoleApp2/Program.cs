@@ -66,14 +66,8 @@ namespace ConsoleApp1
                     break;
                 }
             }
-            if (input != "!q" && left)
-            {
-                ca.SetShift(number, left);
-            }
-            else if (input != "!q" && !left)
-            {
-                ca.SetShift(number, left);
-            }
+            if (input != "!q" && left) ca.SetShift(number, left);
+            else if (input != "!q" && !left) ca.SetShift(number, left);
         }
     }
 }

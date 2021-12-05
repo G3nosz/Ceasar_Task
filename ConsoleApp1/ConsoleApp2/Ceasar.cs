@@ -36,35 +36,19 @@ namespace ConsoleApp1
         public string Cipher(string input)
         {
             if (shift == 0) return input;
-            string[] inputWords = input.Split(' ');
-            char[] inputLetters;
-            var output = new StringBuilder();
-            int i = 1;
+            char[] fullInput = input.ToCharArray();
 
-            foreach (string s in inputWords)
+            for (int i = 0;  i < fullInput.Length; i++)
             {
-                inputLetters = s.ToCharArray();
-                foreach (char c in inputLetters)
+                if (shrift.ContainsKey(Char.ToLower(fullInput[i])))
                 {
+                    if (Char.IsUpper(fullInput[i])) fullInput[i] = Char.ToUpper(shrift[Char.ToLower(fullInput[i])]);
+                    else fullInput[i] = shrift[fullInput[i]];
 
-                    if (shrift.ContainsKey(Char.ToLower(c)))
-                    {
-                        if (Char.IsUpper(c)) output.Append(Char.ToUpper(shrift[Char.ToLower(c)]));
-                        else output.Append(shrift[c]);
-
-                    }
-                    else output.Append(c);
-
-                }
-
-                if (i == inputWords.Length - 1)
-                {
-                    output.Append(' ');
-                    i++;
                 }
             }
 
-            return output.ToString();
+            return new string(fullInput);
         }
 
         /// <summary>
